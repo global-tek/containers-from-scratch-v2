@@ -46,7 +46,7 @@ func child() {
 	cmd.Stderr = os.Stderr
 
 	must(syscall.Sethostname([]byte("container")))
-	must(syscall.Chroot("/home/liz/ubuntufs"))
+	must(syscall.Chroot("/home/ubuntu/ubuntufs"))
 	must(os.Chdir("/"))
 	must(syscall.Mount("proc", "proc", "proc", 0, ""))
 	must(syscall.Mount("thing", "mytemp", "tmpfs", 0, ""))
@@ -56,7 +56,7 @@ func child() {
 	must(cmd.Run())
 
 	must(syscall.Unmount("proc", 0))
-	must(syscall.Unmount("thing", 0))
+	must(syscall.Unmount("mytemp", 0))
 }
 
 func cg() {
